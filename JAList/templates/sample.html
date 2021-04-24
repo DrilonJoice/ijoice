@@ -11,11 +11,11 @@
 <body>
 <h1>HELLO BUDDIES</h1>
 
-<form>
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" name="fname" > <br>
-  <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname" ><br><br>
+<form method="ACCESS">
+  <label for="fn">First name:</label><br>
+  <input type="text" id="fn" name="fn" > <br>
+  <label for="ln">Last name:</label><br>
+  <input type="text" id="ln" name="ln" ><br><br>
   <button id="demo" onclick="myFunction()">Submit</button>
   
   <script>
@@ -25,8 +25,15 @@
   </script>
 
 
-
+  {% csrf_token%}
 </form> 
+
+<table>
+    <tr>
+      <td>{{newname}}</td>
+      <td>{{newlasname}}</td>
+    </tr>
+</table>
 
     
     

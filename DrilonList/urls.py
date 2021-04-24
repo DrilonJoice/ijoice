@@ -65,5 +65,5 @@ from JAList import views
 
 urlpatterns=[
 	url(r'^admin/',admin.site.urls),
-	url(r'^$',views.mainpage),
+	url(r'^$',views.mypage),
 ]
