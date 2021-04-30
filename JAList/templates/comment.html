@@ -39,29 +39,19 @@ body{
           <label for="email" class="required">Your email;</label>
           <input type="email" name="email" id="email" value="" tabindex="2" placeholder="Input your email" required="required">
       
-          <label for="comment" class="required">Your message</label>
-          <textarea name="comment" id="comment" rows="10" tabindex="3" placeholder="Input your comment"  required="required"></textarea>
-         
-
+          <label for="public_comment" class="required">This comment will be post public</label>
+          <textarea name="public_comment" id="public_comment" rows="10" tabindex="3" placeholder="Input your comment"  required="required"></textarea>
           <br>
 
-          <label>This section allow you to inform admin to ask some advise that you want to solve.</label><br>
-          
-          <input type="radio" name="yesorno" id="yes" value="" tabindex="4" required="required">
-          <label for="yes">Yes, I want to talk to admin, and I want some advise to cope with stress</label><br>
-          
-          <input type="radio" name="yesorno" id="no" value="" >
-          <label for="no">No, I just want to comment here</label><br>
+          <label for="private_comment" class="required">This comment is private. You can insert here your problem and admin will try to solve it and give advise.And can contact you by use of your email.</label>
+          <textarea name="private_comment" id="private_comment" rows="10" tabindex="4" placeholder="This is private comment."  required="required"></textarea>
 
-          <label>Rate this page</label>
-          <input type="radio" name="rate" id="verybad" tabindex="5" required="required"> <label>1</label>
-          <input type="radio" name="rate" id="bad"> <label>2</label>
-          <input type="radio" name="rate" id="neutral"> <label>3</label>
-          <input type="radio" name="rate" id="good"> <label>4</label>
-          <input type="radio" name="rate" id="verygood"> <label>5</label><br>
-         
-        
-      
+          
+          <label for="rate" class="required">Rate 1-5 (poor-excellent)</label> <br>
+          <input type="number" name="rate" id="rate" value="" tabindex="5" placeholder="Rate 1-5" min="1" max="5" maxlength="1" required="required">
+          <br>
+
+          <br>
           <input name="submit" type="submit" id='submit' value="Submit comment" /><br>
           
 

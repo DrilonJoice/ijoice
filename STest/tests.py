@@ -42,13 +42,13 @@ class PageTest(unittest.TestCase):
 		input2.send_keys('joice@gmail.com')
 		time.sleep(1)
 
-		input3 = self.browser.find_element_by_id('comment')
+		input3 = self.browser.find_element_by_id('public_comment')
 		self.assertEqual(input3.get_attribute('placeholder'), 'Input your comment')
 		input3.click()
 		time.sleep(1)
-		input3.send_keys('This is the breakfree')
+		input3.send_keys('Thank you for this site')
 		time.sleep(1)
-		
+
 		submit = self.browser.find_element_by_id('submit')
 		submit.click()
 		time.sleep(2)

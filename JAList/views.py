@@ -8,7 +8,7 @@ def mypage(request):
 	return render(request,'comment.html',
 		{'new_author':request.POST.get('comment_author',''),
 		'new_email':request.POST.get('email',''),
-		'new_comment':request.POST.get('comment',''),})
+		'new_comment':request.POST.get('public_comment',''),})
 		
 #kay sir 04-13-2021
  
