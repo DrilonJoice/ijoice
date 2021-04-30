@@ -3,7 +3,7 @@ from django.http import HttpRequest
 #from django.http import HttpResponse
 from django.template.loader import render_to_string
 #from django.urls import resolve
-#from JAList.models import Item
+from JAList.models import Item
 
 # Create your tests here.
 
@@ -18,6 +18,22 @@ class MyPageTest(TestCase):
 		self.assertIn('new_author', response.content.decode())
 		self.assertTemplateUsed(response,'comment.html')
 	
+class ORMTest(TestCase):
+	def test_saving_retrieving_list(self):
+		txt1 = Item()
+		txt1.text = 'Item one'
+		txt1.save()
+		txt2 = Item()
+		txt2.text = 'Item two'
+		txt2.save()
+		savedItems = Item.objects.all()
+		self.assertEqual(savedItems.count(),2)
+		savedItem1 = savedItems[0]
+		savedItem2 = savedItems[1]
+		self.assertEqual(savedItem1.text, 'Item one')
+		self.assertEqual(savedItem2.text, 'Item two')
+
+
 
 
 
