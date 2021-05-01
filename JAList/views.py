@@ -1,14 +1,41 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from JAList.models import Item
+
 
 # Create your views here.
 
+# def mypage(request):
+# 	#return render(request, 'comment.html',{'newPerson':request.post}('comment_author'))
+
+
+# 	return render(request,'comment.html',
+# 		{'new_author':request.POST.get('comment_author',''),
+# 		'new_email':request.POST.get('email',''),
+# 		'new_comment':request.POST.get('public_comment',''),})
+
 def mypage(request):
-	#return render(request, 'comment.html',{'newPerson':request.post}('comment_author'))
-	return render(request,'comment.html',
-		{'new_author':request.POST.get('comment_author',''),
-		'new_email':request.POST.get('email',''),
-		'new_comment':request.POST.get('public_comment',''),})
+	if request.method == 'POST':
+		Item.objects.create(text=request.POST['comment_author'])
+		return redirect ('/')
+	return render(request, 'comment.html')
+
+	# if request.method == 'POST':
+	# 	newItem = request.POST['comment_author']
+	# 	Item.objects.create(text=newItem)
+	# else:
+	# 	newItem = ''
+	# return render(request,'comment.html',{'new_author': newItem,})	
+
+
+	# item1=Item()
+	# item1.text=request.POST.get('comment_author', '')
+	# item1.save()
+	# #return render(request, 'comment.html',{'new_author':request.POST.get('comment_author', ''),}) 
+	# return render(request,'comment.html',{'new_author':item1.text,})
+	
+	
+
 		
 #kay sir 04-13-2021
  

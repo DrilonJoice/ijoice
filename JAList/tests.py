@@ -1,7 +1,7 @@
 from django.test import TestCase
-from django.http import HttpRequest
+#from django.http import HttpRequest
 #from django.http import HttpResponse
-from django.template.loader import render_to_string
+#from django.template.loader import render_to_string
 #from django.urls import resolve
 from JAList.models import Item
 
@@ -13,10 +13,25 @@ class MyPageTest(TestCase):
 		response = self.client.get('/')
 		self.assertTemplateUsed(response,'comment.html')
 
+	def test_only_saves_items_if_necessary(self):
+		self.client.get('/')
+		self.assertEqual(Item.objects.count(), 0)
+
+
 	def test_save_POST_request(self):
-		response = self.client.post('/',data={'comment_author':'new_author'})
-		self.assertIn('new_author', response.content.decode())
-		self.assertTemplateUsed(response,'comment.html')
+		response = self.client.post('/',data={'comment_author': 'new_author'} )
+		
+		self.assertEqual(Item.objects.count(), 1)
+		newItem = Item.objects.first()
+		self.assertEqual(newItem.text, 'new_author')
+
+		#self.assertIn('new_author', response.content.decode())
+		#self.assertTemplateUsed(response,'comment.html')
+
+		self.assertEqual(response.status_code, 302)
+		self.assertEqual(response['location'], '/')		
+
+
 	
 class ORMTest(TestCase):
 	def test_saving_retrieving_list(self):
