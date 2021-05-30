@@ -1,63 +1,81 @@
-from selenium import webdriver 
-import unittest
-
+from django.test import LiveServerTestCase
+from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+from selenium.common.exceptions import WebDriverException
+
+MAX_WAIT = 3
+class PageTest(LiveServerTestCase):
 
 
-#kaysir
-#from selenium.webdriver.common.keys import keys
-#import time
 
-class PageTest(unittest.TestCase):
-	def setUp(self):
-	 	self.browser = webdriver.Firefox()
+   	def wait_for_table(self, row_text):        
+   	    start_time = time.time()
+   	    while True:  
+   	        try:                
+   	            table = self.browser.find_element_by_id('tablelist')       	                 
+   	            rows = table.find_elements_by_tag_name('tr')                
+   	            self.assertIn(row_text, [row.text for row in rows])
+   	            return
+   	        except (AssertionError, WebDriverException) as e:  
+   	            if time.time() - start_time > MAX_WAIT:  
+                       raise e                  
+   	            time.sleep(0.5)  
+      
+   	def setUp(self):
+   	    self.browser = webdriver.Firefox()
+   	def test_start_list_and_retrieve_it(self):
+	    self.browser.get('http://localhost:8000')
+	    #self.browser.get(self.live_server_url)
+	    self.assertIn('Online Student Financial Assistance', self.browser.title)
+	    headerText = self.browser.find_element_by_tag_name('h1').text
+	    self.assertIn('Online Student Financial Assistance', headerText)
 
-	def test_browser_title(self):
-	 	self.browser.get('http://localhost:8000/')
-	 	self.assertIn('Comment',self.browser.title)
-
-	def check_rows_in_list(self,row_text):
-		table = self.browser.find_element_by_id('list')
-		rows = table.find_elements_by_tag_name('tr')
-		self.assertIn(row_text, [row.text for row in rows])
-
-	def test_start_list_and_retrieve_it(self):
-		self.browser.get('http://localhost:8000')
-		self.assertIn('Comment', self.browser.title)
-		headerText = self.browser.find_element_by_tag_name('h2').text
-		self.assertIn('Stress Tips Buddy Box', headerText)
-
-		input1 = self.browser.find_element_by_id('comment_author')
-		self.assertEqual(input1.get_attribute('placeholder'), 'Input your name')
-		input1.click()
-		time.sleep(1)
-		input1.send_keys('Joice Drilon')
-		time.sleep(1)
+	    input1 = self.browser.find_element_by_id('name')
+	    self.assertEqual(input1.get_attribute('placeholder'), 'Input your name')
+	    input1.click()
+	    time.sleep(1)
+	    input1.send_keys('Joice Drilon')
+	    time.sleep(1)
 		
-		input2 = self.browser.find_element_by_id('email')
-		self.assertEqual(input2.get_attribute('placeholder'), 'Input your email')
-		input2.click()
-		time.sleep(1)
-		input2.send_keys('joice@gmail.com')
-		time.sleep(1)
-
-		input3 = self.browser.find_element_by_id('public_comment')
-		self.assertEqual(input3.get_attribute('placeholder'), 'Input your comment')
-		input3.click()
-		time.sleep(1)
-		input3.send_keys('Thank you for this site')
-		time.sleep(1)
-
-		submit = self.browser.find_element_by_id('submit')
-		submit.click()
-		time.sleep(2)
-
-		table = self.browser.find_element_by_id('list')
-		rows = table.find_element_by_tag_name('tr')
-	
+	    input2 = self.browser.find_element_by_id('school')
+	    self.assertEqual(input2.get_attribute('placeholder'), 'Input your school')
+	    input2.click()
+	    time.sleep(1)
+	    input2.send_keys('TUPC')
+	    time.sleep(1)
 
 
+	    submit = self.browser.find_element_by_id('submit')
+	    submit.click()
+	    time.sleep(2)
+		
+	    input3 = self.browser.find_element_by_id('ysection')
+	    self.assertEqual(input3.get_attribute('placeholder'), 'Input your Year and Section')
+	    input3.click()
+	    time.sleep(1)
+	    input3.send_keys('3rd Year - 3B')
+	    time.sleep(1)
+		
+	    input4 = self.browser.find_element_by_id('address')
+	    self.assertEqual(input4.get_attribute('placeholder'), 'Input your Address')
+	    input4.click()
+	    time.sleep(1)
+	    input4.send_keys('BLK 27 LOT 20 Brgy. Sto. Nino')
+	    time.sleep(1)
+		
+	    input5 = self.browser.find_element_by_id('cnumber')
+	    self.assertEqual(input5.get_attribute('placeholder'), 'Input your Contact Number')
+	    input5.click()
+	    time.sleep(1)
+	    input5.send_keys('0912345689')
+	    time.sleep(1)
+
+	    submit = self.browser.find_element_by_id('submit')
+	    submit.click()
+	    time.sleep(2)
+
+		
 #kay sir apr 13	
 '''
 from selenium.webdriver.common.keys import Keys

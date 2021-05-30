@@ -1,104 +1,58 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from JAList.models import Item
+from JAList.models import Applicant, Student_Information
 
 
-# Create your views here.
+def home_page(request):
+	student_informations=Student_Information.objects.all()
+	return render(request, 'comment.html',{ 'student_informations' : student_informations })
 
-# def mypage(request):
-# 	#return render(request, 'comment.html',{'newPerson':request.post}('comment_author'))
+def add_item(request, applicant_id):
+	applicant_=Applicant.objects.get(id=applicant_id)
 
-
-# 	return render(request,'comment.html',
-# 		{'new_author':request.POST.get('comment_author',''),
-# 		'new_email':request.POST.get('email',''),
-# 		'new_comment':request.POST.get('public_comment',''),})
-
-def mypage(request):
-	if request.method == 'POST':
-		Item.objects.create(text=request.POST['comment_author'])
-		return redirect ('/')
-	return render(request, 'comment.html')
-
-	# if request.method == 'POST':
-	# 	newItem = request.POST['comment_author']
-	# 	Item.objects.create(text=newItem)
-	# else:
-	# 	newItem = ''
-	# return render(request,'comment.html',{'new_author': newItem,})	
-
-
-	# item1=Item()
-	# item1.text=request.POST.get('comment_author', '')
-	# item1.save()
-	# #return render(request, 'comment.html',{'new_author':request.POST.get('comment_author', ''),}) 
-	# return render(request,'comment.html',{'new_author':item1.text,})
-	
-	
-
+	#Student_Information.objects.create(prComment=request.POST['private_comment'],mrate=request.POST['rate'], applicant=applicant_)
+	return redirect(f'/JAList/{applicant_.id}')
 		
-#kay sir 04-13-2021
- 
-#from CTList.models import Item
-
-#def Mainpage(request):
-
-	#if request.method == 'POST':
-		#newItem = request.POST['personEntry']
-		#Item.objects.create(text=newItem)
-	#else:
-		#newItem = ''
-	#return render(request,'comment.html',{'newPerson':newItem})	
-
-
-
-	#item1=Item()
-	#item1.text=request.POST.get('personEntry', '')
-	#item.save()
-	#return render(request, 'comment.html',{'newaudience':request.POST['audiencename'],}) 
-	#return render(request, 'comment.html'{'newaudience': item1.text, 'newPlace':item2.text, })
-
-'''
-'''
-'''
-#april 15 2021
-from django.shortcuts import render, redirect
-
-def Mainpage(request):
-	if request.method == 'POST':
-		Item.objects.create(text=request.post['personEntry'])
-		return redirect ('/')
-
-		items = Item.objects.all()
-
+def view_list(request, list_id):
+	applicant_= Applicant.objects.get(id=list_id)
+	return render(request,'Rate.html',{ 'applicant' : applicant_ })
 	
-	return render(request, 'comment.html', {'newPerson':items})
-	#return render(request, comment.html)
+def new_list(request):
+	applicant_ = Applicant.objects.create()
+	Student_Information.objects.create()
+	#Student_Information.objects.create(cAuthor=request.POST['comment_author'], cEmail=request.POST['email'] , puComment=request.POST['public_comment'], list=list_ )	
+	return redirect(f'/JAList/{applicant_.id}/')
 
 
-#def mypage(request):
-	#return render(request, 'comment.html',{'newaudience':request.post['audiencename'],}) 
+def datamani(request):
+	#creating
+	applicant=Applicant(Name='Joice',School='TUPC')
+	applicant.save()
 
-'''
+	#read all entries
+	objects=Applicant.all()
+	result='Printing: <br>'
+	for x in objects:
+		res+= x.fname+ '<br>'
 
+	#read specify
+	sname=Applicant.objects.get(id='2')
+	res += 'Printing <br>'
+	res += Sname.Email
 
-#	return render(request,'comment.html')
-'''
-	if request.method == 'post':
-		return HttpResponse(request.post['audiencename'])
-	return render(request,'comment.html')
-'''
-	
-'''
-def mypage(request):
-	return render(request, 'sample.html',{''})
-'''	
+	#delete
+	res += '<br> Delete <br>'
+	sname.delete()
 
-	#return HttpResponse('homepage')
+	#update
+	applicant=Applicant(Name='Joice',School='TUPC')
+	applicant.save()
 
-'''
-def homepage(request):
-	#return HttpResponse('homepage')
-	return render(request,'sample.html')
+	#filter
+	qs = Student_Information.objects.get(Name='Joice')
+	res += 'Found : %s results <br>'%len(de)
 
-'''
+	#order
+	qs = Applicant.order_by('Name')
+	for x in de:
+		res +=x.fname + x.fschool + '<br>'	

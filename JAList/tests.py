@@ -25,12 +25,18 @@ class MyPageTest(TestCase):
 		newItem = Item.objects.first()
 		self.assertEqual(newItem.text, 'new_author')
 
-		#self.assertIn('new_author', response.content.decode())
-		#self.assertTemplateUsed(response,'comment.html')
-
+	def	test_redirect_POST(self):
+		response = self.client.post('/',data={'comment_author': 'frenzy'} )	
 		self.assertEqual(response.status_code, 302)
 		self.assertEqual(response['location'], '/')		
 
+	def test_template_displays_list(self):
+		Item.objects.create(text='List item 1')
+		Item.objects.create(text='List item 2')
+		response = self.client.get('/')
+		self.assertIn('List item 1', response.content.decode())
+		self.assertIn('List item 2', response.content.decode())
+	
 
 	
 class ORMTest(TestCase):
@@ -91,7 +97,7 @@ class ORMTest(TestCase):
 		#self.assertTemplateUsed(response,'comment.html')
 		#response = self.client.post('/', data={'personEntry': 'New entry'})
 				
-	def	test_redirect_post_self:
+	def	test_redirects_post_(self):
 
 		response = self.client.post('/',data={'personEntry': 'frenzy'} )
 	

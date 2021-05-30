@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comment</title>
+    <title>Online Student Financial Assistancet</title>
 
 <style>
 
@@ -27,30 +27,16 @@ body{
 
 <body>
     <div id="commentsection">
-        <h2>Stress Tips Buddy Box</h2>
-        <h2>Web Dev 1 Comment </h2>
-        <h3>Leave a Comment</h3>
+        <h1>Online Student Financial Assistance</h1>
+       
+        <form method="POST" id="commentform" action="JAList/new">
       
-        <form action="" method="POST" id="commentform">
+          <label for="name" class="required">Your Name</label>
+          <input type="text" name="name" id="name" value="" tabindex="1" placeholder="Input your name" required="required">
       
-          <label for="comment_author" class="required">Your name</label>
-          <input type="text" name="comment_author" id="comment_author" value="" tabindex="1" placeholder="Input your name" required="required">
+          <label for="school" class="required">Your School:</label>
+          <input type="text" name="school" id="school" value="" tabindex="2" placeholder="Input your school" required="required">
       
-          <label for="email" class="required">Your email;</label>
-          <input type="email" name="email" id="email" value="" tabindex="2" placeholder="Input your email" required="required">
-      
-          <label for="public_comment" class="required">This comment will be post public</label>
-          <textarea name="public_comment" id="public_comment" rows="10" tabindex="3" placeholder="Input your comment"  required="required"></textarea>
-          <br>
-
-          <label for="private_comment" class="required">This comment is private. You can insert here your problem and admin will try to solve it and give advise.And can contact you by use of your email.</label>
-          <textarea name="private_comment" id="private_comment" rows="10" tabindex="4" placeholder="This is private comment."  required="required"></textarea>
-
-          
-          <label for="rate" class="required">Rate 1-5 (poor-excellent)</label> <br>
-          <input type="number" name="rate" id="rate" value="" tabindex="5" placeholder="Rate 1-5" min="1" max="5" maxlength="1" required="required">
-          <br>
-
           <br>
           <input name="submit" type="submit" id='submit' value="Submit comment" /><br>
           
@@ -60,7 +46,7 @@ body{
       
       </div>
 
-      <table id="list">
+  <!--     <table id="list">
   
             <tr>
             <td>1:{{new_author}}</td>
@@ -69,9 +55,18 @@ body{
             <td>:{{new_comment}}</td>
             </tr>
             
-      
       </table>      
 
+      <table id='list'>
+
+            {% for item in newPerson %}
+            <tr>
+            <td>{{ forloop.counter }}:{{ item.text }}</td>
+            </tr>
+            {% endfor %}
+
+      </table>
+ -->
       <!-- <div>
         <table id="list">
             {% for item in newPerson %}
