@@ -25,7 +25,7 @@ SECRET_KEY = 'c+)3yva+6+v*h)bi#wi2n$3nnz*j&eh-x@!vs+wj3^j8ylw_eo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ijoice.ph']
 
 
 # Application definition

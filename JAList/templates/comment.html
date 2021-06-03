@@ -18,7 +18,54 @@
 body{
   background-color:gray;
 
+
 }
+
+ul {
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+    /* border: 38px ; */
+    /* position:fixed; */
+    right: 2cm;
+    overflow: hidden;
+    background-color: rgb(82, 7, 88);
+    /* border-top: 38px lightseagreen; */
+}
+
+li {
+  float:right;
+}
+
+li a {
+  display:block;
+  color: rgb(255, 255, 255);
+  /* text-align: center; */
+  padding: 14px 16px ;
+  text-decoration: none;  
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+
+li a:hover:not(.active){
+background-color : rgb(197, 46, 207)
+
+}
+
+.active{
+  background-color: rgb(41, 2, 44);
+}
+
+.Title{
+    /* padding:90px; */
+  text-align: center;
+  position: relative;
+  color: rgb(41, 2, 44);
+}
+
+
+
 
 </style>
 
@@ -27,8 +74,22 @@ body{
 
 <body>
     <div id="commentsection">
-        <h1>Online Student Financial Assistance</h1>
-       
+    
+      <ul>
+      <li><a >Status</a></li>    
+      <li><a >Scholarship</a></li>
+      <li><a >School Record</a></li>  
+      <li><a >Student Information</a></li>    
+      <li><a class="active">Applicant</a></li>
+    </ul>
+
+    <br>
+    <br>
+
+      <div class="Title"> 
+        <h1>Online Student Financial Assistance</h1>  
+      </div>
+
         <form method="POST" id="commentform" action="JAList/new">
       
           <label for="name" class="required">Your Name</label>
@@ -39,7 +100,8 @@ body{
       
           <br>
           <input name="submit" type="submit" id='submit' value="Submit comment" /><br>
-          
+
+
 
           {% csrf_token %}
         </form>

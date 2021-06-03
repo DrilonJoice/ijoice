@@ -19,7 +19,7 @@ def view_list(request, list_id):
 	
 def new_list(request):
 	applicant_ = Applicant.objects.create()
-
+	
 	#Student_Information.objects.create(cAuthor=request.POST['comment_author'], cEmail=request.POST['email'] , puComment=request.POST['public_comment'], list=list_ )	
 	return redirect(f'/JAList/{applicant_.id}/')
 
