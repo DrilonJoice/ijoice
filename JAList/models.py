@@ -12,7 +12,7 @@ class Applicant(models.Model):
 class Student_Information(models.Model):
 	ggrade_year = models.TextField(default="")
 	gaddress = models.TextField(default="")
-	gcontactno = models.TextField(default="")
+	gcontactno = models.IntegerField(default="")
 	applicant = models.ForeignKey(Applicant, default=None, on_delete=models.PROTECT)
 
 	class meta:

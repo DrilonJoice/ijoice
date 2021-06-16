@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Student Financial Assistance</title>
+
+<style>
+
+#commentsection input[type='url'],
+#commentsection textarea {
+  display: block;
+  width: 75%;
+} 
+
+body{
+  background-color:gray;
+
+}
+
+ul {
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+    /* border: 38px ; */
+    /* position:fixed; */
+    right: 2cm;
+    overflow: hidden;
+    background-color: rgb(82, 7, 88);
+    /* border-top: 38px lightseagreen; */
+}
+
+
+li {
+  float:right;
+}
+
+li a {
+  display:block;
+  color: rgb(255, 255, 255);
+  /* text-align: center; */
+  padding: 14px 16px ;
+  text-decoration: none;  
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+li a:hover:not(.active){
+background-color : rgb(197, 46, 207)
+
+}
+
+.active{
+  background-color: rgb(41, 2, 44);
+}
+
+.Title{
+    /* padding:90px; */
+  text-align: center;
+  position: relative;
+  color: rgb(41, 2, 44);
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  background-color: #8ea8ce;
+}
+
+
+
+</style>
+
+
+</head>
+
+<body>
+    <div id="commentsection">
+
+      <ul>
+        <li><a href="sstatus">Status</a></li>    
+        <li><a href="sscholarship">Scholarship</a></li>
+        <li><a href="sschool_record"class ="active">School Record</a></li>  
+        <li><a href="sstudentinfo">Student Information</a></li>    
+        <li><a href="aapplicant">Applicant</a></li>
+
+
+      </ul>
+  
+      <br>
+      <br>
+        <div class="Title"> 
+        <h1>Online Student Financial Assistance</h1>
+        </div>
+
+        <form method="POST" id="commentform" action="/JAList/{{ applicant.id }}/add_item">
+
+
+          <label for="cor" class="required">Your COR:</label>
+          <input type="url" 
+          name="cor" 
+          id="cor" 
+          value="" 
+          tabindex="1" 
+          placeholder="insert link" 
+          required="required">
+      
+          <label for="tor" class="required">Your TOR:</label>
+          <input type="url" 
+          name="tor" 
+          id="tor" 
+          value="" 
+          tabindex="2" 
+          placeholder="insert link" 
+          required="required">
+    
+          <br>
+          <input name="submit" 
+          type="submit" 
+          id='submit' 
+          value="Submit" /><br>
+          
+          <input type="reset" value="Clear">
+          
+          {% csrf_token %}
+        </form>
+      
+      </div>
+
+      <table style="width:75%">
+  
+        <tr>
+        <td>COR</td>
+        <td>TOR</td>
+        </tr>
+        
+        
+
+  </table> 
+
+
+  <!--     <table id="list">
+  
+            <tr>
+            <td>1:{{new_author}}</td>
+            <td></td>
+            <td>:{{new_email}}</td>
+            <td>:{{new_comment}}</td>
+            </tr>
+            
+      </table>      
+
+      <table id='list'>
+
+            {% for item in newPerson %}
+            <tr>
+            <td>{{ forloop.counter }}:{{ item.text }}</td>
+            </tr>
+            {% endfor %}
+
+      </table>
+ -->
+      <!-- <div>
+        <table id="list">
+            {% for item in newPerson %}
+            <tr>
+            <td>:{{ item.text }}</td>
+            </tr>
+            {% endfor %}
+
+          <tr>
+wala na to v
+          <td>1:{{newPerson}}</td>
+            <td>in</td>
+            <td>{{newPlace}}</td>
+          </tr>
+
+          <tr>
+            <td>1:{{newPerson}}</td>
+            <td>in</td>
+            <td>{{newPlace}}</td>
+          </tr>
+
+        </table>
+      </div> -->
+    
+</body>
+
+
+
+</html>
+

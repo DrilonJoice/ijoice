@@ -5,7 +5,7 @@ from JAList.models import Applicant, Student_Information
 
 def home_page(request):
 	student_informations=Student_Information.objects.all()
-	return render(request, 'comment.html',{ 'student_informations' : student_informations })
+	return render(request, 'applicant.html',{ 'student_informations' : student_informations })
 
 def add_item(request, applicant_id):
 	applicant_=Applicant.objects.get(id=applicant_id)
@@ -15,13 +15,32 @@ def add_item(request, applicant_id):
 		
 def view_list(request, list_id):
 	applicant_= Applicant.objects.get(id=list_id)
-	return render(request,'Rate.html',{ 'applicant' : applicant_ })
+	return render(request,'studentinfo.html',{ 'applicant' : applicant_ })
 	
 def new_list(request):
 	applicant_ = Applicant.objects.create()
 	
 	#Student_Information.objects.create(cAuthor=request.POST['comment_author'], cEmail=request.POST['email'] , puComment=request.POST['public_comment'], list=list_ )	
 	return redirect(f'/JAList/{applicant_.id}/')
+
+
+def aapplicant(request):
+	return render (request, 'applicant.html')
+
+def sstudentinfo(request):
+	return render (request, 'studentinfo.html')
+
+def sschool_record(request):
+	return render (request, 'schoolrecord.html')
+
+def sscholarship(request):
+	return render (request, 'scholarship.html')
+
+def sstatus(request):
+	return render (request, 'status.html')
+
+
+
 
 
 def datamani(request):
