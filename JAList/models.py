@@ -21,7 +21,7 @@ class Student_Information(models.Model):
 class School_Record(models.Model):
 	hcor = models.TextField(default="")
 	htor = models.TextField(default="")
-	student_Information = models.ForeignKey(Student_Information, default=None, on_delete=models.PROTECT)
+	studenti = models.ForeignKey(Student_Information, default=None, on_delete=models.PROTECT)
 
 
 	class meta:

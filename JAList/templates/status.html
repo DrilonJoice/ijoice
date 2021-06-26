@@ -17,6 +17,9 @@
 
 body{
   background-color:gray;
+  background-image: url(bg.png);
+  background-position: fixed;
+  background-size: 100%;
 
 }
 
@@ -69,6 +72,21 @@ table, th, td {
   background-color: #8ea8ce;
 }
 
+.box {
+    /* background: rgba(211, 211, 211, 0.9); */
+        background: rgba(255, 197, 245, 0.9);
+        /* background-color: lightgrey; */
+        width: 33%;
+        /* height: 290px; */ 
+        /* height: 390px; */
+        /* height: 370px; */
+        height: 270px;
+        margin: auto;
+        padding: 0;
+        border: 0;
+        /* opacity: 0.9; */
+           
+}   
  
 
 </style>
@@ -103,8 +121,13 @@ table, th, td {
       <br>
         <div class="Title"> 
         <h1>Online Student Financial Assistance</h1>
+        <br>
+        <br>
+        <br>
+        <br>
         </div>
 
+        <div class="box">
         <form method="POST" id="commentform" action="/JAList/{{ applicant.id }}/add_item">
 
 
@@ -116,7 +139,7 @@ table, th, td {
           tabindex="1" 
           placeholder="status" 
           required="required"> -->
-          <select name="status" id="status" onchange="bstatus();">
+          <select name="status" id="status" onchange="bstatus();" >
             <option value=''>Select Status</option>
             <option value="Congratulation...">Qualified</option>
             <option value="Sorry...">Not Qualified</option>
@@ -151,10 +174,15 @@ table, th, td {
         </form>
       
       </div>
-
-      <table style="width:75%">
+      
+      <div>
+        <br>
+        <br>
+        <br>
+      <table style="width:50%" align="center">
   
         <tr>
+        <td style="width: 30%;">Name</td>
         <td>Status</td>
         <td>Remarks</td>
         <td>Date</td>
@@ -162,7 +190,8 @@ table, th, td {
         
    
 
-  </table> 
+      </table> 
+      </div>
 
 
   <!--     <table id="list">

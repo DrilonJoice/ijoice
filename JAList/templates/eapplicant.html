@@ -9,7 +9,6 @@
 <style>
 
 #commentsection input[type='text'],
-#commentsection input[type='email'],
 #commentsection textarea {
   display: block;
   width: 75%;
@@ -35,7 +34,6 @@ ul {
     /* border-top: 38px lightseagreen; */
 }
 
-
 li {
   float:right;
 }
@@ -48,6 +46,7 @@ li a {
   text-decoration: none;  
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
 
 
 li a:hover:not(.active){
@@ -71,7 +70,11 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
   background-color: #8ea8ce;
+  
+
+
 }
+
 
 .box {
     /* background: rgba(211, 211, 211, 0.9); */
@@ -87,8 +90,8 @@ table, th, td {
         border: 0;
         /* opacity: 0.9; */
            
-}      
-
+        
+    }
 
 </style>
 
@@ -97,85 +100,61 @@ table, th, td {
 
 <body>
     <div id="commentsection">
-
+    
       <ul>
-        <li><a href="sstatus">Status</a></li>    
-        <li><a href="sscholarship" class="active">Scholarship</a></li>
-        <li><a href="sschool_record">School Record</a></li>  
-        <li><a href="sstudentinfo">Student Information</a></li>    
-        <li><a href="aapplicant">Applicant</a></li>
-      </ul>
-  
-      <br>
-      <br>
-        <div class="Title"> 
-        <h1>Online Student Financial Assistance</h1>
-        <br>
-        <br>
-        <br>
-        <br>
-        </div>
+      <li><a href="sstatus">Status</a></li>    
+      <li><a href="sscholarship">Scholarship</a></li>
+      <li><a href="sschool_record">School Record</a></li>  
+      <li><a href="sstudentinfo">Student Information</a></li>    
+      <li><a href="aapplicant" class="active">Applicant</a></li>
+    </ul>
 
-        <div class="box">
-        <form method="POST" id="commentform" action="/JAList/{{ applicant.id }}/add_item">
+    <br>
+    <br>
 
+      <div class="Title"> 
+        <h1>Online Student Financial Assistance</h1>  
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
 
-          <label for="category" class="required">Category:</label>
-          <!-- <input type="text" 
-          name="category" 
-          id="ysection" 
-          value="" 
-          tabindex="1" 
-          placeholder="Category" 
-          required="required"> -->
-          <select name="category" id="category" >
-            <option >Select Category</option>
-            <option value="academic">Academic Scholarship</option>
-            <option value="municipal">Municipal Scholarship</option>
-            <option value="provincial">Provincial Scholarship</option>
-            <option value="others">Others</option>
-          </select>
-          <br>
+      <div class="box">
+        <form method="POST" id="commentform" action="update/{{applicants.id}}">
+
+          {% csrf_token %}
+          <label for="name" class="required">Your Name</label>
+          <input type="text" 
+          name="sname" 
+          value="{{applicants.sname}}" 
+          tabindex="1"
+          required="required">
       
-          <label for="address" class="required">Type:</label>
-          <!-- <input type="text" 
-          name="address" 
-          id="address" 
-          value="" 
-          tabindex="1" 
-          placeholder="Type" 
-          required="required"> -->
-          <select name="type" id="type" >
-            <option >Select Type</option>
-            <option value="academic">Yearly</option>
-            <option value="municipal">Monthly</option>
-          </select>
-
-
+          <label for="school" class="required">Your School:</label>
+          <input type="text" 
+          name="school"
+          value="{{applicants.school}}" 
+          tabindex="2" 
+          required="required">
+      
           <br>
           <input name="submit" type="submit" id='submit' value="Submit" /><br>
           <input type="reset" value="Clear">
 
-          {% csrf_token %}
+
+    
         </form>
-      
+        
       </div>
 
       <div>
-        <br>
-        <br>
-        <br>
-      <table style="width:50%" align="center">
-  
-        <tr>
-        <td>Name</td>
-        <td>Category</td>
-        <td>Type</td>
-        </tr>
-      </table>
-      
-      </div>
+      <br>
+      <br>
+      <br>
 
+
+      
   <!--     <table id="list">
   
             <tr>
