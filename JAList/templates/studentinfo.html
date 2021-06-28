@@ -169,21 +169,21 @@ table, th, td {
   
         <tr>
         <td style="width: 20%;">Name</td>
+        <td style="width: 20%">School</td>
         <td>Year and Section</td>
         <td style="width: 30%;">Address</td>
         <td>Contact Number</td>
         </tr>
         
-      </div>
 
-      <table id='list'>
-
-      {% for studenti in applicant.studenti_set.all %}
+      {% for studentinfo in applicant.studentinfo_set.all %}
     <tr>
       <!{{ forloop.counter }}:  -->
-      <td>{{ forloop.counter }} : {{studenti.ggrade_year }}</td>
-      <td>{{ studenti.gaddress }}</td>
-      <td>{{ studenti.gcontactno }}</td>
+      <td>{{ applicant.fname }}</td>
+      <td>{{ applicant.fschool }}</td>
+      <td>{{studentinfo.ggrade_year }}</td>
+      <td>{{ studentinfo.gaddress }}</td>
+      <td>{{ studentinfo.gcontactno }}</td>
      
     </tr> {% endfor %} </table>
     </div>

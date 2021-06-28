@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from JAList.models import Applicant, Student_Information, School_Record, Scholarship, Status
+from JAList.models import Applicant, Studentinfo, School_Record, Scholarship, Status
 
 def applicant(request):
 	applicants=Applicant.objects.all()
@@ -15,15 +15,24 @@ def new_stuin(request): #1st
 
 def add_applicant(request, applicant_id): 
    applicant_ = Applicant.objects.get(id=applicant_id)    
-   Student_Information.objects.create(ggrade_year=request.POST['ysection'],gaddress=request.POST['address'],gcontactno=request.POST['cnumber'], applicant=applicant_)
+   Studentinfo.objects.create(ggrade_year=request.POST['ysection'],gaddress=request.POST['address'],gcontactno=request.POST['cnumber'], applicant=applicant_)
    #return redirect(f'{applicant_.id}/') 
    return redirect(f'/{applicant_.id}/view_stuin') 
 
 
 def view_stuin(request, applicant_id):  
-	studenti=Student_Information.objects.all()
+	#studenti=Studentinfo.objects.all()
 	applicant_ = Applicant.objects.get(id=applicant_id)
-	return render(request, 'studentinfo.html', {'applicant': applicant_,'studenti': studenti },)
+	return render(request, 'studentinfo.html', {'applicant': applicant_},)
+
+#studentinfo 2nd
+
+
+def student_info(request):
+	applicants=Applicant.objects.all()
+	return render(request, 'applicant.html',{'applicants' : applicants})
+
+
  
 
 def edit(request, id):

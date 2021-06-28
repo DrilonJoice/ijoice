@@ -9,19 +9,19 @@ class Applicant(models.Model):
 	class meta:
 		db_table = "iApplicant"
 	
-class Student_Information(models.Model):
+class Studentinfo(models.Model):
 	ggrade_year = models.TextField(default="")
 	gaddress = models.TextField(default="")
 	gcontactno = models.IntegerField(default="")
 	applicant = models.ForeignKey(Applicant, default=None, on_delete=models.PROTECT)
 
 	class meta:
-		db_table = "iStudent_information"
+		db_table = "iStudentinfo"
 
 class School_Record(models.Model):
 	hcor = models.TextField(default="")
 	htor = models.TextField(default="")
-	studenti = models.ForeignKey(Student_Information, default=None, on_delete=models.PROTECT)
+	studentinfo = models.ForeignKey(Studentinfo, default=None, on_delete=models.PROTECT)
 
 
 	class meta:
